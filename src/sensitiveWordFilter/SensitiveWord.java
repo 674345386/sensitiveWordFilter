@@ -23,8 +23,8 @@ import java.util.Map.Entry;
  **/
 public class SensitiveWord {
 
-	private HashSet<String> sensitiwordHashSet;
-	private Map sensitiveHashMap;
+	private HashSet<String> sensitiwordHashSet;  //保存要查找的敏感词
+	private Map sensitiveHashMap;		//敏感词构造的hashmap
 
 	// Constructor
 	private SensitiveWord() {
@@ -42,7 +42,7 @@ public class SensitiveWord {
 	 * @return void
 	 * @throws
 	 */
-	public void initWordHashmap() {
+	public void init() {
 		readfile();
 		consSensitiveHashMap(sensitiwordHashSet);
 
@@ -144,6 +144,22 @@ public class SensitiveWord {
 		}
 
 	}
+	
+	/**
+	 * @return the sensitiwordHashSet
+	 */
+	public HashSet<String> getSensitiwordHashSet() {
+		return sensitiwordHashSet;
+	}
+	
+	/**
+	 * @return the sensitiveHashMap
+	 */
+	public Map getSensitiveHashMap() {
+		return sensitiveHashMap;
+	}
+
+
 
 	// public static void main(String[] args) {
 	// // TODO Auto-generated method stub
