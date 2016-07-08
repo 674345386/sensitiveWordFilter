@@ -36,17 +36,7 @@ public class SensitiveWord {
 		return SENSITIVE_WORD;
 	}
 
-	/**
-	 * @Description: 此类对外的接口函数
-	 * @param
-	 * @return void
-	 * @throws
-	 */
-	public void init() {
-		readfile();
-		consSensitiveHashMap(sensitiwordHashSet);
 
-	}
 
 	/**
 	 * @Description: 读取敏感词文件，存入hashset中
@@ -137,7 +127,7 @@ public class SensitiveWord {
 		// Iterator iterator3 = sensitiveHashMap.keySet().iterator();
 		while (iterator2.hasNext()) {
 			Map.Entry entry = (Entry) iterator2.next();
-			System.out.println(entry.getKey());
+			System.out.println("The key of hashmap is  "+entry.getKey());
 			// Object keyObject =iterator2.next();
 			// System.out.println(keyObject);
 			// System.out.println(sensitiveHashMap.get(keyObject));
@@ -145,21 +135,32 @@ public class SensitiveWord {
 
 	}
 	
+	
+	/**
+	 * @Description: 初始化
+	 * @param
+	 * @return void
+	 * @throws
+	 */
+	public void init() {
+		readfile();
+		consSensitiveHashMap(sensitiwordHashSet);
+
+	}
+
 	/**
 	 * @return the sensitiwordHashSet
 	 */
 	public HashSet<String> getSensitiwordHashSet() {
 		return sensitiwordHashSet;
 	}
-	
+
 	/**
 	 * @return the sensitiveHashMap
 	 */
 	public Map getSensitiveHashMap() {
 		return sensitiveHashMap;
 	}
-
-
 
 	// public static void main(String[] args) {
 	// // TODO Auto-generated method stub
