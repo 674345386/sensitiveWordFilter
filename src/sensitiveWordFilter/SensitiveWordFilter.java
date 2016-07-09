@@ -11,6 +11,7 @@ package sensitiveWordFilter;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -25,7 +26,7 @@ public class SensitiveWordFilter {
 	
 	private int num; // 保存存在多少个敏感词数量
 	private HashSet<String> sensitiwordHashSet;//要查找的敏感词set
-	private Map sensitiveHashMap;
+	private Map sensitiveHashMap;		//用敏感词构造的hashmap
 	private HashSet<String> foundSensitiveWordSet; // 用于保存已经发现的敏感词
 
 	
@@ -41,6 +42,7 @@ public class SensitiveWordFilter {
 		instanceSensitiveWord.init();
 		sensitiveHashMap =instanceSensitiveWord.getSensitiveHashMap();
 		sensitiwordHashSet=instanceSensitiveWord.getSensitiwordHashSet();
+		foundSensitiveWordSet = new HashSet<String>();
 	}
 	/**
 	 * @Description: 遍历待处理文档中的每个字开头到最后，与敏感字构成的hashmap进行匹对
@@ -63,14 +65,14 @@ public class SensitiveWordFilter {
 	 * @throws
 	 */
 	private void printResult() {
-		System.out.print("要查找的敏感词是     ");
+		System.out.println("要查找的敏感词是     ");
 		for (String word : sensitiwordHashSet) {
-			System.out.print(word+"\t");
+			System.out.println(word + "\t");
 		}
-		
-		System.out.println("文档中，有"+num+"个敏感词");
-		for (String word : foundSensitiveWordSet) {
-			System.out.println(word+"\t");
+		System.out.println("文档中，有" + num + "个敏感词  :  ");
+		Iterator<String> iterator = foundSensitiveWordSet.iterator();
+		while (iterator.hasNext()) {
+			System.out.println(iterator.next());
 		}
 	}
 
@@ -82,7 +84,6 @@ public class SensitiveWordFilter {
 	 * @throws
 	 */
 	private boolean isContainSensitiveWord(int i, String txt) {
-		foundSensitiveWordSet = new HashSet<String>();
 		int length = 0; // 已匹配的敏感字长度,每找对一个字，加1
 		boolean isExist = false;
 		Map nowWorkMap = sensitiveHashMap;
@@ -95,7 +96,8 @@ public class SensitiveWordFilter {
 			} else {
 				length++;
 				System.out.println(wordMap.get("isEnd").toString());
-				if (wordMap.get("isEnd").toString() == String.valueOf(1))		
+				// if (wordMap.get("isEnd").toString() == String.valueOf(1))
+				if (wordMap.get("isEnd").toString().equals("1"))
 					isExist = true;
 				nowWorkMap = wordMap;
 			}
